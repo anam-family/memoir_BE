@@ -2,6 +2,7 @@ package com.memoir.memoir.entity;
 
 import java.time.LocalDate;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,22 +18,28 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Schema(description = "자서전 엔티티")
 public class Memoir {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "자서전 ID", example = "1")
     private Long id;
     
     @Column(nullable = false)
+    @Schema(description = "이름", example = "홍길동", required = true)
     private String name;
     
     @Column(nullable = false)
+    @Schema(description = "생년월일", example = "1990-01-01", required = true)
     private LocalDate birthDate;
     
     // 질문-답변 쌍 30개 - TEXT 타입으로 변경
     @Column(columnDefinition = "TEXT")
+    @Schema(description = "첫 번째 질문", example = "어린 시절 가장 기억에 남는 순간은?")
     private String question1Question;
     @Column(columnDefinition = "TEXT")
+    @Schema(description = "첫 번째 답변", example = "할머니와 함께 보낸 여름휴가가 가장 기억에 남습니다.")
     private String question1Answer;
     
     @Column(columnDefinition = "TEXT")
